@@ -1,0 +1,11 @@
+spring:
+  profiles: redis
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL55Dialect
+---
+  profiles: redis
+  jpa:
+    generate-ddl: true

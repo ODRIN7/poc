@@ -1,0 +1,8 @@
+---
+applications:
+- name: pcf-redis
+  memory: 1024M
+  random-route: true
+  path: target/pcf-redis-0.0.1-SNAPSHOT.jar
+  env:
+    spring.profiles.active: redis
