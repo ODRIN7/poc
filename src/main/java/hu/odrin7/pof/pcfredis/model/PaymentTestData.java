@@ -3,16 +3,16 @@ package hu.odrin7.pof.pcfredis.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class paymentText implements Serializable {
+public class PaymentTestData implements Serializable {
     private Long Id;
     private String text;
 
-    public paymentText(Long id, String text) {
+    public PaymentTestData(Long id, String text) {
         Id = id;
         this.text = text;
     }
 
-    public paymentText() {
+    public PaymentTestData() {
     }
 
     public Long getId() {
@@ -35,9 +35,9 @@ public class paymentText implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        paymentText paymentText = (paymentText) o;
-        return Objects.equals(Id, paymentText.Id) &&
-                Objects.equals(text, paymentText.text);
+        PaymentTestData paymentTestData = (PaymentTestData) o;
+        return Objects.equals(Id, paymentTestData.Id) &&
+                Objects.equals(text, paymentTestData.text);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package hu.odrin7.pof.pcfredis.services;
 
 import hu.odrin7.pof.pcfredis.dao.PaymentIdRepository;
-import hu.odrin7.pof.pcfredis.model.paymentText;
+import hu.odrin7.pof.pcfredis.model.PaymentTestData;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,12 +29,12 @@ public class PaymentIdServiceImpl implements PaymentIdService {
 
     ///// -------- LIST ------------/////////
     @Override
-    public void addToPaymentsList(paymentText paymentText) {
-        paymentIdRepository.addToPaymentAsList(paymentText);
+    public void addToPaymentsList(PaymentTestData paymentTestData) {
+        paymentIdRepository.addToPaymentAsList(paymentTestData);
     }
 
     @Override
-    public List<paymentText> getPaymentAsListMembers() {
+    public List<PaymentTestData> getPaymentAsListMembers() {
         return paymentIdRepository.getPaymentAsListMembers();
     }
 
@@ -45,38 +45,38 @@ public class PaymentIdServiceImpl implements PaymentIdService {
 
     ///// -------- SET ------------/////////
     @Override
-    public void addToPaymentSet(paymentText... paymentText) {
-        paymentIdRepository.addToPaymentSet(paymentText);
+    public void addToPaymentSet(PaymentTestData... paymentTestData) {
+        paymentIdRepository.addToPaymentSet(paymentTestData);
     }
 
     @Override
-    public Set<paymentText> getPaymentIdSetMembers() {
+    public Set<PaymentTestData> getPaymentIdSetMembers() {
         return paymentIdRepository.getPaymentIdSetMembers();
     }
 
     @Override
-    public boolean isSetMember(paymentText paymentText) {
-        return paymentIdRepository.isSetMember(paymentText);
+    public boolean isSetMember(PaymentTestData paymentTestData) {
+        return paymentIdRepository.isSetMember(paymentTestData);
     }
 
     ///// -------- HASH ------------/////////
     @Override
-    public void saveHash(paymentText paymentText) {
-        paymentIdRepository.saveHash(paymentText);
+    public void saveHash(PaymentTestData paymentTestData) {
+        paymentIdRepository.saveHash(paymentTestData);
     }
 
     @Override
-    public void updateHash(paymentText paymentText) {
-        paymentIdRepository.updateHash(paymentText);
+    public void updateHash(PaymentTestData paymentTestData) {
+        paymentIdRepository.updateHash(paymentTestData);
     }
 
     @Override
-    public Map<Long, paymentText> findAllHash() {
+    public Map<Long, PaymentTestData> findAllHash() {
         return paymentIdRepository.findAllHash();
     }
 
     @Override
-    public paymentText findInHash(Long id) {
+    public PaymentTestData findInHash(Long id) {
         return paymentIdRepository.findInHash(id);
     }
 

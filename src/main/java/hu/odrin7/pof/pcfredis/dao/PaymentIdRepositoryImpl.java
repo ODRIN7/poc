@@ -1,6 +1,6 @@
 package hu.odrin7.pof.pcfredis.dao;
 
-import hu.odrin7.pof.pcfredis.model.paymentText;
+import hu.odrin7.pof.pcfredis.model.PaymentTestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.HashOperations;
@@ -25,13 +25,13 @@ public class PaymentIdRepositoryImpl implements PaymentIdRepository {
     private  RedisTemplate<String, Object> redisTemplate;
     @Autowired
     @Qualifier("listOperations")
-    private  ListOperations<String, paymentText> listOperations;
+    private  ListOperations<String, PaymentTestData> listOperations;
     @Autowired
     @Qualifier("setOperations")
-    private  SetOperations<String, paymentText> setOperations;
+    private  SetOperations<String, PaymentTestData> setOperations;
     @Autowired
     @Qualifier("hashOperations")
-    private  HashOperations<String, Long, paymentText> hashOperations;
+    private  HashOperations<String, Long, PaymentTestData> hashOperations;
 
     @Override
     public void setPaymentIdAsString(String idKey, String text) {
@@ -46,12 +46,12 @@ public class PaymentIdRepositoryImpl implements PaymentIdRepository {
 
     ///// -------- LIST ------------/////////
     @Override
-    public void addToPaymentAsList(paymentText paymentText) {
-        listOperations.leftPush(REDIS_LIST_KEY, paymentText);
+    public void addToPaymentAsList(PaymentTestData paymentTestData) {
+        listOperations.leftPush(REDIS_LIST_KEY, paymentTestData);
     }
 
     @Override
-    public List<paymentText> getPaymentAsListMembers() {
+    public List<PaymentTestData> getPaymentAsListMembers() {
         return listOperations.range(REDIS_LIST_KEY, 0, -1);
     }
 
@@ -63,38 +63,38 @@ public class PaymentIdRepositoryImpl implements PaymentIdRepository {
 
     ///// -------- Set ------------/////////
     @Override
-    public void addToPaymentSet(paymentText... paymentText) {
-        setOperations.add(REDIS_SET_KEY, paymentText);
+    public void addToPaymentSet(PaymentTestData... paymentTestData) {
+        setOperations.add(REDIS_SET_KEY, paymentTestData);
     }
 
     @Override
-    public Set<paymentText> getPaymentIdSetMembers() {
+    public Set<PaymentTestData> getPaymentIdSetMembers() {
         return setOperations.members(REDIS_SET_KEY);
     }
 
     @Override
-    public boolean isSetMember(paymentText paymentText) {
-        return setOperations.isMember(REDIS_SET_KEY, paymentText);
+    public boolean isSetMember(PaymentTestData paymentTestData) {
+        return setOperations.isMember(REDIS_SET_KEY, paymentTestData);
     }
 
     ///// -------- Hash ------------/////////
     @Override
-    public void saveHash(paymentText paymentText) {
-        hashOperations.put(REDIS_HASH_KEY, paymentText.getId(), paymentText);
+    public void saveHash(PaymentTestData paymentTestData) {
+        hashOperations.put(REDIS_HASH_KEY, paymentTestData.getId(), paymentTestData);
     }
 
     @Override
-    public void updateHash(paymentText paymentText) {
-        hashOperations.put(REDIS_HASH_KEY, paymentText.getId(), paymentText);
+    public void updateHash(PaymentTestData paymentTestData) {
+        hashOperations.put(REDIS_HASH_KEY, paymentTestData.getId(), paymentTestData);
     }
 
     @Override
-    public Map<Long, paymentText> findAllHash() {
+    public Map<Long, PaymentTestData> findAllHash() {
         return hashOperations.entries(REDIS_HASH_KEY);
     }
 
     @Override
-    public paymentText findInHash(Long id) {
+    public PaymentTestData findInHash(Long id) {
         return hashOperations.get(REDIS_HASH_KEY, id);
     }
 
