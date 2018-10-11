@@ -1,6 +1,8 @@
 package hu.odrin7.pof.pcfredis.dao;
 
 import hu.odrin7.pof.pcfredis.model.paymentText;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -16,23 +18,20 @@ import java.util.concurrent.TimeUnit;
 public class PaymentIdRepositoryImpl implements PaymentIdRepository {
 
     private static final String REDIS_LIST_KEY = "PaymentIdLIST";
-    public static final String REDIS_SET_KEY = "PaymentIdSET";
-    public static final String REDIS_HASH_KEY = "PaymentIdHash";
+    private static final String REDIS_SET_KEY = "PaymentIdSET";
+    private static final String REDIS_HASH_KEY = "PaymentIdHash";
 
-    private final RedisTemplate<String, Object> redisTemplate;
-    private final ListOperations<String, paymentText> listOperations;
-    private final SetOperations<String, paymentText> setOperations;
-    private final HashOperations<String, Long, paymentText> hashOperations;
-
-    public PaymentIdRepositoryImpl(RedisTemplate<String, Object> redisTemplate,
-                                   ListOperations<String, paymentText> listOperations,
-                                   SetOperations<String, paymentText> setOperations,
-                                   HashOperations<String, Long, paymentText> hashOperations) {
-        this.redisTemplate = redisTemplate;
-        this.listOperations = listOperations;
-        this.setOperations = setOperations;
-        this.hashOperations = hashOperations;
-    }
+    @Autowired
+    private  RedisTemplate<String, Object> redisTemplate;
+    @Autowired
+    @Qualifier("listOperations")
+    private  ListOperations<String, paymentText> listOperations;
+    @Autowired
+    @Qualifier("setOperations")
+    private  SetOperations<String, paymentText> setOperations;
+    @Autowired
+    @Qualifier("hashOperations")
+    private  HashOperations<String, Long, paymentText> hashOperations;
 
     @Override
     public void setPaymentIdAsString(String idKey, String text) {
@@ -103,4 +102,5 @@ public class PaymentIdRepositoryImpl implements PaymentIdRepository {
     public void deleteHash(Long id) {
         hashOperations.delete(REDIS_HASH_KEY, id);
     }
+
 }

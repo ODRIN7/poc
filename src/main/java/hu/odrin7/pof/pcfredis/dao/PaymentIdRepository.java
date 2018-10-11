@@ -1,5 +1,7 @@
 package hu.odrin7.pof.pcfredis.dao;
 
+import hu.odrin7.pof.pcfredis.model.ObjectRelation;
+import hu.odrin7.pof.pcfredis.model.PaymentId;
 import hu.odrin7.pof.pcfredis.model.paymentText;
 
 import java.util.List;

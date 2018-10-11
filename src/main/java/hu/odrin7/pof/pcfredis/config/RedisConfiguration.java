@@ -1,7 +1,10 @@
 package hu.odrin7.pof.pcfredis.config;
 
+import hu.odrin7.pof.pcfredis.model.ObjectRelation;
+import hu.odrin7.pof.pcfredis.model.PaymentId;
 import hu.odrin7.pof.pcfredis.model.paymentText;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -71,17 +74,32 @@ public class RedisConfiguration {
     }
 
     @Bean
+    @Qualifier("listOperations")
     public ListOperations<String, paymentText> listOperations(RedisTemplate<String, paymentText> redisTemplate) {
         return redisTemplate.opsForList();
     }
 
     @Bean
+    @Qualifier("setOperations")
     public SetOperations<String, paymentText> setOperations(RedisTemplate<String, paymentText> redisTemplate) {
         return redisTemplate.opsForSet();
     }
 
     @Bean
+    @Qualifier("hashOperations")
     public HashOperations<String, Long, paymentText> hashOperations(RedisTemplate<String, paymentText> redisTemplate) {
+        return redisTemplate.opsForHash();
+    }
+
+    @Bean
+    @Qualifier("paymentOperations")
+    public SetOperations<String, PaymentId> setPaymentOperations(RedisTemplate<String, PaymentId> redisTemplate) {
+        return redisTemplate.opsForSet();
+    }
+
+    @Bean
+    @Qualifier("relationOperations")
+    public HashOperations<String, Long, ObjectRelation> hashRelationOperations(RedisTemplate<String, ObjectRelation> redisTemplate) {
         return redisTemplate.opsForHash();
     }
 }
