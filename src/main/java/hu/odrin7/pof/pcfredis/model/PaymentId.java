@@ -6,21 +6,20 @@ import java.util.Set;
 
 public class PaymentId implements Serializable {
 
-    private Long groupId;
     private PaymentObjectReference objectReference;
+    private Long groupId;
     private Set<Long> relationReferenceId;
 
-    public PaymentId(Long groupId,
-                     PaymentObjectReference objectReference,
+    public PaymentId(PaymentObjectReference objectReference,
+                     Long groupId,
                      Set<Long> relationReferenceId) {
-        this.groupId = groupId;
         this.objectReference = objectReference;
+        this.groupId = groupId;
         this.relationReferenceId = relationReferenceId;
     }
 
     public PaymentId() {
     }
-
 
     public PaymentObjectReference getObjectReference() {
         return objectReference;
@@ -28,14 +27,6 @@ public class PaymentId implements Serializable {
 
     public void setObjectReference(PaymentObjectReference objectReference) {
         this.objectReference = objectReference;
-    }
-
-    public Set<Long> getRelationReferenceId() {
-        return relationReferenceId;
-    }
-
-    public void setRelationReferenceId(Set<Long> relationReferenceId) {
-        this.relationReferenceId = relationReferenceId;
     }
 
     public Long getGroupId() {
@@ -46,18 +37,26 @@ public class PaymentId implements Serializable {
         this.groupId = groupId;
     }
 
+    public Set<Long> getRelationReferenceId() {
+        return relationReferenceId;
+    }
+
+    public void setRelationReferenceId(Set<Long> relationReferenceId) {
+        this.relationReferenceId = relationReferenceId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PaymentId paymentId = (PaymentId) o;
-        return Objects.equals(groupId, paymentId.groupId) &&
-                Objects.equals(objectReference, paymentId.objectReference) &&
+        return Objects.equals(objectReference, paymentId.objectReference) &&
+                Objects.equals(groupId, paymentId.groupId) &&
                 Objects.equals(relationReferenceId, paymentId.relationReferenceId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(groupId, objectReference, relationReferenceId);
+        return Objects.hash(objectReference, groupId, relationReferenceId);
     }
 }

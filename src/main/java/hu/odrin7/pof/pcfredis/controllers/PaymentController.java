@@ -25,14 +25,14 @@ public class PaymentController {
         paymentIdService.savePaymentId(paymentIds);
     }
 
-    @PostMapping(value = "/payment-hash")
-    public void addPaymentIdToSet(@RequestBody ObjectRelation objectRelation) {
-        paymentIdService.saveRelation(objectRelation);
-    }
-
     @GetMapping(value = "/payment-set")
     public Set<PaymentId> getAllPaymentIds() {
         return paymentIdService.getAllPaymentId();
+    }
+
+    @PostMapping(value = "/payment-hash")
+    public void addPaymentIdToSet(@RequestBody ObjectRelation objectRelation) {
+        paymentIdService.saveRelation(objectRelation);
     }
 
     @GetMapping(value = "/payment-hash")

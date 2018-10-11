@@ -7,11 +7,12 @@ import java.util.Map;
 import java.util.Set;
 
 public interface PaymentService {
+
     void savePaymentId(PaymentId... paymentId);
 
-    void saveRelation(ObjectRelation objectRelation);
-
     Set<PaymentId> getAllPaymentId();
+
+    void saveRelation(ObjectRelation objectRelation);
 
     Map<Long, ObjectRelation> getAllObjectReletion();
 }

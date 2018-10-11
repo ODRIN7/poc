@@ -26,8 +26,8 @@ public class PaymentRepostioryImpl implements PaymentRepository {
     private HashOperations<String, Long, ObjectRelation> relationOperations;
 
     @Override
-    public void savePaymentId(PaymentId... paymentId) {
-        paymentOperations.add(REDIS_PAYMENT_SET_KEY, paymentId);
+    public void savePaymentId(PaymentId... paymentIds) {
+        paymentOperations.add(REDIS_PAYMENT_SET_KEY, paymentIds);
     }
 
     @Override

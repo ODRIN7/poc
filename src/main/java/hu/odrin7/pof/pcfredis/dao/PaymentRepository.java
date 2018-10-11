@@ -10,9 +10,9 @@ public interface PaymentRepository {
     ///// -------- Payment HASH ------------/////////
     void savePaymentId(PaymentId... paymentId);
 
-    void saveRelation(ObjectRelation objectRelation);
-
     Set<PaymentId> getAllPaymentId();
+
+    void saveRelation(ObjectRelation objectRelation);
 
     Map<Long, ObjectRelation> getAllObjectReletion();
 }

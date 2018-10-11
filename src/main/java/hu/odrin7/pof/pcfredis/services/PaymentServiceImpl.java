@@ -22,13 +22,13 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void saveRelation(ObjectRelation objectRelation) {
-        paymentRepository.saveRelation(objectRelation);
+    public Set<PaymentId> getAllPaymentId() {
+        return paymentRepository.getAllPaymentId();
     }
 
     @Override
-    public Set<PaymentId> getAllPaymentId() {
-        return paymentRepository.getAllPaymentId();
+    public void saveRelation(ObjectRelation objectRelation) {
+        paymentRepository.saveRelation(objectRelation);
     }
 
     @Override
