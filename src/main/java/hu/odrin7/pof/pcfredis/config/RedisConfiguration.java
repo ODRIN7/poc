@@ -1,5 +1,6 @@
 package hu.odrin7.pof.pcfredis.config;
 
+import hu.odrin7.pof.pcfredis.model.PaymentId;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +9,10 @@ import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.util.StringUtils;
 
@@ -59,7 +63,6 @@ public class RedisConfiguration {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(getJedisConnectionFactory());
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-//       redisTemplate.setKeySerializer(new StringRedisSerializer());
 //   	 redisTemplate.setKeySerializer(new StringRedisSerializer());
 //   	 redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
 //        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
@@ -67,4 +70,18 @@ public class RedisConfiguration {
         return redisTemplate;
     }
 
+    @Bean
+    public ListOperations<String, PaymentId> listOperations(RedisTemplate<String, PaymentId> redisTemplate) {
+        return redisTemplate.opsForList();
+    }
+
+    @Bean
+    public SetOperations<String, PaymentId> setOperations(RedisTemplate<String, PaymentId> redisTemplate) {
+        return redisTemplate.opsForSet();
+    }
+
+    @Bean
+    public HashOperations<String, Long, PaymentId> hashOperations(RedisTemplate<String, PaymentId> redisTemplate) {
+        return redisTemplate.opsForHash();
+    }
 }

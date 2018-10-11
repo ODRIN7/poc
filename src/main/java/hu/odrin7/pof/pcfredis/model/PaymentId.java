@@ -1,8 +1,9 @@
 package hu.odrin7.pof.pcfredis.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class PaymentId {
+public class PaymentId implements Serializable {
     private Long Id;
     private String text;
 
