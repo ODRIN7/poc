@@ -41,12 +41,14 @@
         </dependency>
 
         <dependency>
-            <groupId>redis-clients</groupId>
+            <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
-            <artifactId>commons.pool.2</artifactId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.0</version>
         </dependency>
     </dependencies>
 
@@ -58,6 +60,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>
