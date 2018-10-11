@@ -1,6 +1,6 @@
 package hu.odrin7.pof.pcfredis.dao;
 
-import hu.odrin7.pof.pcfredis.model.PaymentId;
+import hu.odrin7.pof.pcfredis.model.paymentText;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -20,14 +20,14 @@ public class PaymentIdRepositoryImpl implements PaymentIdRepository {
     public static final String REDIS_HASH_KEY = "PaymentIdHash";
 
     private final RedisTemplate<String, Object> redisTemplate;
-    private final ListOperations<String, PaymentId> listOperations;
-    private final SetOperations<String, PaymentId> setOperations;
-    private final HashOperations<String, Long, PaymentId> hashOperations;
+    private final ListOperations<String, paymentText> listOperations;
+    private final SetOperations<String, paymentText> setOperations;
+    private final HashOperations<String, Long, paymentText> hashOperations;
 
     public PaymentIdRepositoryImpl(RedisTemplate<String, Object> redisTemplate,
-                                   ListOperations<String, PaymentId> listOperations,
-                                   SetOperations<String, PaymentId> setOperations,
-                                   HashOperations<String, Long, PaymentId> hashOperations) {
+                                   ListOperations<String, paymentText> listOperations,
+                                   SetOperations<String, paymentText> setOperations,
+                                   HashOperations<String, Long, paymentText> hashOperations) {
         this.redisTemplate = redisTemplate;
         this.listOperations = listOperations;
         this.setOperations = setOperations;
@@ -47,12 +47,12 @@ public class PaymentIdRepositoryImpl implements PaymentIdRepository {
 
     ///// -------- LIST ------------/////////
     @Override
-    public void addToPaymentAsList(PaymentId paymentId) {
-        listOperations.leftPush(REDIS_LIST_KEY, paymentId);
+    public void addToPaymentAsList(paymentText paymentText) {
+        listOperations.leftPush(REDIS_LIST_KEY, paymentText);
     }
 
     @Override
-    public List<PaymentId> getPaymentAsListMembers() {
+    public List<paymentText> getPaymentAsListMembers() {
         return listOperations.range(REDIS_LIST_KEY, 0, -1);
     }
 
@@ -64,38 +64,38 @@ public class PaymentIdRepositoryImpl implements PaymentIdRepository {
 
     ///// -------- Set ------------/////////
     @Override
-    public void addToPaymentSet(PaymentId... paymentId) {
-        setOperations.add(REDIS_SET_KEY, paymentId);
+    public void addToPaymentSet(paymentText... paymentText) {
+        setOperations.add(REDIS_SET_KEY, paymentText);
     }
 
     @Override
-    public Set<PaymentId> getPaymentIdSetMembers() {
+    public Set<paymentText> getPaymentIdSetMembers() {
         return setOperations.members(REDIS_SET_KEY);
     }
 
     @Override
-    public boolean isSetMember(PaymentId paymentId) {
-        return setOperations.isMember(REDIS_SET_KEY, paymentId);
+    public boolean isSetMember(paymentText paymentText) {
+        return setOperations.isMember(REDIS_SET_KEY, paymentText);
     }
 
     ///// -------- Hash ------------/////////
     @Override
-    public void saveHash(PaymentId paymentId) {
-        hashOperations.put(REDIS_HASH_KEY, paymentId.getId(), paymentId);
+    public void saveHash(paymentText paymentText) {
+        hashOperations.put(REDIS_HASH_KEY, paymentText.getId(), paymentText);
     }
 
     @Override
-    public void updateHash(PaymentId paymentId) {
-        hashOperations.put(REDIS_HASH_KEY, paymentId.getId(), paymentId);
+    public void updateHash(paymentText paymentText) {
+        hashOperations.put(REDIS_HASH_KEY, paymentText.getId(), paymentText);
     }
 
     @Override
-    public Map<Long, PaymentId> findAllHash() {
+    public Map<Long, paymentText> findAllHash() {
         return hashOperations.entries(REDIS_HASH_KEY);
     }
 
     @Override
-    public PaymentId findInHash(Long id) {
+    public paymentText findInHash(Long id) {
         return hashOperations.get(REDIS_HASH_KEY, id);
     }
 

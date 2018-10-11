@@ -1,7 +1,7 @@
 package hu.odrin7.pof.pcfredis.services;
 
 import hu.odrin7.pof.pcfredis.dao.PaymentIdRepository;
-import hu.odrin7.pof.pcfredis.model.PaymentId;
+import hu.odrin7.pof.pcfredis.model.paymentText;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,12 +29,12 @@ public class PaymentIdServiceImpl implements PaymentIdService {
 
     ///// -------- LIST ------------/////////
     @Override
-    public void addToPaymentsList(PaymentId paymentId) {
-        paymentIdRepository.addToPaymentAsList(paymentId);
+    public void addToPaymentsList(paymentText paymentText) {
+        paymentIdRepository.addToPaymentAsList(paymentText);
     }
 
     @Override
-    public List<PaymentId> getPaymentAsListMembers() {
+    public List<paymentText> getPaymentAsListMembers() {
         return paymentIdRepository.getPaymentAsListMembers();
     }
 
@@ -45,38 +45,38 @@ public class PaymentIdServiceImpl implements PaymentIdService {
 
     ///// -------- SET ------------/////////
     @Override
-    public void addToPaymentSet(PaymentId... paymentId) {
-        paymentIdRepository.addToPaymentSet(paymentId);
+    public void addToPaymentSet(paymentText... paymentText) {
+        paymentIdRepository.addToPaymentSet(paymentText);
     }
 
     @Override
-    public Set<PaymentId> getPaymentIdSetMembers() {
+    public Set<paymentText> getPaymentIdSetMembers() {
         return paymentIdRepository.getPaymentIdSetMembers();
     }
 
     @Override
-    public boolean isSetMember(PaymentId paymentId) {
-        return paymentIdRepository.isSetMember(paymentId);
+    public boolean isSetMember(paymentText paymentText) {
+        return paymentIdRepository.isSetMember(paymentText);
     }
 
     ///// -------- HASH ------------/////////
     @Override
-    public void saveHash(PaymentId paymentId) {
-        paymentIdRepository.saveHash(paymentId);
+    public void saveHash(paymentText paymentText) {
+        paymentIdRepository.saveHash(paymentText);
     }
 
     @Override
-    public void updateHash(PaymentId paymentId) {
-        paymentIdRepository.updateHash(paymentId);
+    public void updateHash(paymentText paymentText) {
+        paymentIdRepository.updateHash(paymentText);
     }
 
     @Override
-    public Map<Long, PaymentId> findAllHash() {
+    public Map<Long, paymentText> findAllHash() {
         return paymentIdRepository.findAllHash();
     }
 
     @Override
-    public PaymentId findInHash(Long id) {
+    public paymentText findInHash(Long id) {
         return paymentIdRepository.findInHash(id);
     }
 

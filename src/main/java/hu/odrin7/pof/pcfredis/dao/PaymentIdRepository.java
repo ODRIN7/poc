@@ -1,6 +1,6 @@
 package hu.odrin7.pof.pcfredis.dao;
 
-import hu.odrin7.pof.pcfredis.model.PaymentId;
+import hu.odrin7.pof.pcfredis.model.paymentText;
 
 import java.util.List;
 import java.util.Map;
@@ -13,27 +13,27 @@ public interface PaymentIdRepository {
     String getProgrammerAsString(String idKey);
 
     ///// -------- LIST ------------/////////
-    void addToPaymentAsList(PaymentId paymentId);
+    void addToPaymentAsList(paymentText paymentText);
 
-    List<PaymentId> getPaymentAsListMembers();
+    List<paymentText> getPaymentAsListMembers();
 
     Long getProgrammersListCount();
 
     ///// -------- Set ------------/////////
-    void addToPaymentSet(PaymentId... paymentId);
+    void addToPaymentSet(paymentText... paymentText);
 
-    Set<PaymentId> getPaymentIdSetMembers();
+    Set<paymentText> getPaymentIdSetMembers();
 
-    boolean isSetMember(PaymentId paymentId);
+    boolean isSetMember(paymentText paymentText);
 
     ///// -------- HASH ------------/////////
-    void saveHash(PaymentId paymentId);
+    void saveHash(paymentText paymentText);
 
-    void updateHash(PaymentId paymentId);
+    void updateHash(paymentText paymentText);
 
-    Map<Long, PaymentId> findAllHash();
+    Map<Long, paymentText> findAllHash();
 
-    PaymentId findInHash(Long id);
+    paymentText findInHash(Long id);
 
     void deleteHash(Long id);
 }

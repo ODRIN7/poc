@@ -1,6 +1,6 @@
 package hu.odrin7.pof.pcfredis.config;
 
-import hu.odrin7.pof.pcfredis.model.PaymentId;
+import hu.odrin7.pof.pcfredis.model.paymentText;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -71,17 +71,17 @@ public class RedisConfiguration {
     }
 
     @Bean
-    public ListOperations<String, PaymentId> listOperations(RedisTemplate<String, PaymentId> redisTemplate) {
+    public ListOperations<String, paymentText> listOperations(RedisTemplate<String, paymentText> redisTemplate) {
         return redisTemplate.opsForList();
     }
 
     @Bean
-    public SetOperations<String, PaymentId> setOperations(RedisTemplate<String, PaymentId> redisTemplate) {
+    public SetOperations<String, paymentText> setOperations(RedisTemplate<String, paymentText> redisTemplate) {
         return redisTemplate.opsForSet();
     }
 
     @Bean
-    public HashOperations<String, Long, PaymentId> hashOperations(RedisTemplate<String, PaymentId> redisTemplate) {
+    public HashOperations<String, Long, paymentText> hashOperations(RedisTemplate<String, paymentText> redisTemplate) {
         return redisTemplate.opsForHash();
     }
 }

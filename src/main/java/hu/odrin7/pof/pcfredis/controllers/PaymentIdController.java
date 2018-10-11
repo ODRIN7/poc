@@ -2,7 +2,7 @@ package hu.odrin7.pof.pcfredis.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hu.odrin7.pof.pcfredis.model.PaymentId;
+import hu.odrin7.pof.pcfredis.model.paymentText;
 import hu.odrin7.pof.pcfredis.services.PaymentIdService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +21,10 @@ public class PaymentIdController {
     }
 
     @PostMapping(value = "/paymentId-string")
-    public void addPaymentId(@RequestBody PaymentId paymentId) throws JsonProcessingException {
+    public void addPaymentId(@RequestBody paymentText paymentText) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        paymentIdService.setPaymentIdAsString(String.valueOf(paymentId.getId()),
-                mapper.writeValueAsString(paymentId));
+        paymentIdService.setPaymentIdAsString(String.valueOf(paymentText.getId()),
+                mapper.writeValueAsString(paymentText));
     }
 
     @GetMapping(value = "/paymentId-string/{id}")
@@ -34,12 +34,12 @@ public class PaymentIdController {
 
     ///// -------- LIST ------------/////////
     @PostMapping(value = "/paymentId-list")
-    public void addPaymentIdToList(@RequestBody PaymentId paymentId) {
-        paymentIdService.addToPaymentsList(paymentId);
+    public void addPaymentIdToList(@RequestBody paymentText paymentText) {
+        paymentIdService.addToPaymentsList(paymentText);
     }
 
     @GetMapping(value = "/paymentId-list")
-    public List<PaymentId> readString() {
+    public List<paymentText> readString() {
         return paymentIdService.getPaymentAsListMembers();
     }
 
@@ -50,38 +50,38 @@ public class PaymentIdController {
 
     ///// -------- SET ------------/////////
     @PostMapping(value = "/paymentId-set")
-    public void addPaymentIdToSet(@RequestBody PaymentId... paymentId) {
-        paymentIdService.addToPaymentSet(paymentId);
+    public void addPaymentIdToSet(@RequestBody paymentText... paymentText) {
+        paymentIdService.addToPaymentSet(paymentText);
     }
 
     @GetMapping(value = "/paymentId-set")
-    public Set<PaymentId> readSet() {
+    public Set<paymentText> readSet() {
         return paymentIdService.getPaymentIdSetMembers();
     }
 
     @PostMapping(value = "/paymentId-set/member")
-    public boolean isSetMember(@RequestBody PaymentId paymentId) {
-        return paymentIdService.isSetMember(paymentId);
+    public boolean isSetMember(@RequestBody paymentText paymentText) {
+        return paymentIdService.isSetMember(paymentText);
     }
 
     ///// -------- HASH ------------/////////
     @PostMapping(value = "/paymentId-hash")
-    public void saveHash(@RequestBody PaymentId paymentId) {
-        paymentIdService.saveHash(paymentId);
+    public void saveHash(@RequestBody paymentText paymentText) {
+        paymentIdService.saveHash(paymentText);
     }
 
     @PutMapping(value = "/paymentId-hash")
-    public void updateHash(@RequestBody PaymentId paymentId) {
-        paymentIdService.updateHash(paymentId);
+    public void updateHash(@RequestBody paymentText paymentText) {
+        paymentIdService.updateHash(paymentText);
     }
 
     @GetMapping(value = "/paymentId-hash")
-    public Map<Long, PaymentId> findAllInHash() {
+    public Map<Long, paymentText> findAllInHash() {
         return paymentIdService.findAllHash();
     }
 
     @GetMapping(value = "/paymentId-hash/{id}")
-    public PaymentId findOneInHash(@PathVariable Long id) {
+    public paymentText findOneInHash(@PathVariable Long id) {
         return paymentIdService.findInHash(id);
     }
 
