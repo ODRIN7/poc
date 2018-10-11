@@ -2,6 +2,7 @@ package hu.odrin7.pof.pcfredis.config;
 
 import hu.odrin7.pof.pcfredis.model.ObjectRelation;
 import hu.odrin7.pof.pcfredis.model.PaymentId;
+import hu.odrin7.pof.pcfredis.model.PaymentObjectReference;
 import hu.odrin7.pof.pcfredis.model.PaymentTestData;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -93,8 +94,8 @@ public class RedisConfiguration {
 
     @Bean
     @Qualifier("paymentOperations")
-    public SetOperations<String, PaymentId> setPaymentOperations(RedisTemplate<String, PaymentId> redisTemplate) {
-        return redisTemplate.opsForSet();
+    public HashOperations<String, PaymentObjectReference, PaymentId> setPaymentOperations(RedisTemplate<String, PaymentId> redisTemplate) {
+        return redisTemplate.opsForHash();
     }
 
     @Bean

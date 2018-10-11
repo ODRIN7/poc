@@ -3,10 +3,11 @@ package hu.odrin7.pof.pcfredis.services;
 import hu.odrin7.pof.pcfredis.dao.PaymentRepository;
 import hu.odrin7.pof.pcfredis.model.ObjectRelation;
 import hu.odrin7.pof.pcfredis.model.PaymentId;
+import hu.odrin7.pof.pcfredis.model.PaymentObjectReference;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -17,12 +18,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void savePaymentId(PaymentId... paymentId) {
+    public void savePaymentId(List<PaymentId> paymentId) {
         paymentRepository.savePaymentId(paymentId);
     }
 
     @Override
-    public Set<PaymentId> getAllPaymentId() {
+    public Map<PaymentObjectReference, PaymentId> getAllPaymentId() {
         return paymentRepository.getAllPaymentId();
     }
 

@@ -2,14 +2,14 @@ package hu.odrin7.pof.pcfredis.dao;
 
 import hu.odrin7.pof.pcfredis.model.ObjectRelation;
 import hu.odrin7.pof.pcfredis.model.PaymentId;
+import hu.odrin7.pof.pcfredis.model.PaymentObjectReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.SetOperations;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Repository
 public class PaymentRepostioryImpl implements PaymentRepository {
@@ -20,14 +20,17 @@ public class PaymentRepostioryImpl implements PaymentRepository {
 
     @Autowired
     @Qualifier("paymentOperations")
-    private SetOperations<String, PaymentId> paymentOperations;
+    private HashOperations<String, PaymentObjectReference, PaymentId> paymentOperations;
     @Autowired
     @Qualifier("relationOperations")
     private HashOperations<String, Long, ObjectRelation> relationOperations;
 
     @Override
-    public void savePaymentId(PaymentId... paymentIds) {
-        paymentOperations.add(REDIS_PAYMENT_SET_KEY, paymentIds);
+    public void savePaymentId(List<PaymentId> paymentIds) {
+        paymentIds.forEach(paymentId ->
+                paymentOperations.put(REDIS_PAYMENT_SET_KEY,
+                        paymentId.getObjectReference(), paymentId));
+        ;
     }
 
     @Override
@@ -36,8 +39,8 @@ public class PaymentRepostioryImpl implements PaymentRepository {
     }
 
     @Override
-    public Set<PaymentId> getAllPaymentId() {
-        return paymentOperations.members(REDIS_PAYMENT_SET_KEY);
+    public Map<PaymentObjectReference, PaymentId> getAllPaymentId() {
+        return paymentOperations.entries(REDIS_PAYMENT_SET_KEY);
     }
 
     @Override

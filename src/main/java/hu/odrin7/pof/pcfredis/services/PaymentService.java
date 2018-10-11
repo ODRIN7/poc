@@ -2,15 +2,16 @@ package hu.odrin7.pof.pcfredis.services;
 
 import hu.odrin7.pof.pcfredis.model.ObjectRelation;
 import hu.odrin7.pof.pcfredis.model.PaymentId;
+import hu.odrin7.pof.pcfredis.model.PaymentObjectReference;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public interface PaymentService {
 
-    void savePaymentId(PaymentId... paymentId);
+    void savePaymentId(List<PaymentId> paymentId);
 
-    Set<PaymentId> getAllPaymentId();
+    Map<PaymentObjectReference, PaymentId> getAllPaymentId();
 
     void saveRelation(ObjectRelation objectRelation);
 
