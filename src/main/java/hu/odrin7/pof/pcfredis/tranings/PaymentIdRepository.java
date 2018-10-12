@@ -1,21 +1,17 @@
-package hu.odrin7.pof.pcfredis.services;
-
-
-import hu.odrin7.pof.pcfredis.model.PaymentTestData;
+package hu.odrin7.pof.pcfredis.tranings;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public interface PaymentIdService {
+public interface PaymentIdRepository {
 
     void setPaymentIdAsString(String idKey, String text);
 
-    String getPaymentIDAsString(String key);
-
+    String getProgrammerAsString(String idKey);
 
     ///// -------- LIST ------------/////////
-    void addToPaymentsList(PaymentTestData paymentTestData);
+    void addToPaymentAsList(PaymentTestData paymentTestData);
 
     List<PaymentTestData> getPaymentAsListMembers();
 

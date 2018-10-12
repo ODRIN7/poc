@@ -1,6 +1,5 @@
-package hu.odrin7.pof.pcfredis.dao;
+package hu.odrin7.pof.pcfredis.tranings;
 
-import hu.odrin7.pof.pcfredis.model.PaymentTestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.HashOperations;

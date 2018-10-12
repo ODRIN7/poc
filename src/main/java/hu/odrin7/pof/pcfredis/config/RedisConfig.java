@@ -3,7 +3,7 @@ package hu.odrin7.pof.pcfredis.config;
 import hu.odrin7.pof.pcfredis.model.ObjectRelation;
 import hu.odrin7.pof.pcfredis.model.PaymentId;
 import hu.odrin7.pof.pcfredis.model.PaymentObjectReference;
-import hu.odrin7.pof.pcfredis.model.PaymentTestData;
+import hu.odrin7.pof.pcfredis.tranings.PaymentTestData;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

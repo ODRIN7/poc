@@ -1,4 +1,4 @@
-package hu.odrin7.pof.pcfredis.model;
+package hu.odrin7.pof.pcfredis.tranings;
 
 import java.io.Serializable;
 import java.util.Objects;

@@ -1,7 +1,5 @@
-package hu.odrin7.pof.pcfredis.services;
+package hu.odrin7.pof.pcfredis.tranings;
 
-import hu.odrin7.pof.pcfredis.dao.PaymentIdRepository;
-import hu.odrin7.pof.pcfredis.model.PaymentTestData;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
