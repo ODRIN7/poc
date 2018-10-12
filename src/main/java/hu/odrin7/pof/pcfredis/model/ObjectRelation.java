@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ObjectRelation implements Serializable {
-    private long id;
+    private Long id;
     private PaymentObjectReference objectReferenceFirst;
     private PaymentObjectReference objectReferenceSecond;
 
@@ -31,11 +31,11 @@ public class ObjectRelation implements Serializable {
     public ObjectRelation() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

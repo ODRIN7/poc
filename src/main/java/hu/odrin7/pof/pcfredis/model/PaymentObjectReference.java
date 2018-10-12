@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class PaymentObjectReference implements Serializable {
-    private String Dom;
+    private String dom;
     private String refId;
 
     public PaymentObjectReference(String dom, String refId) {
-        Dom = dom;
+        this.dom = dom;
         this.refId = refId;
     }
 
@@ -16,11 +16,11 @@ public class PaymentObjectReference implements Serializable {
     }
 
     public String getDom() {
-        return Dom;
+        return dom;
     }
 
     public void setDom(String dom) {
-        Dom = dom;
+        this.dom = dom;
     }
 
     public String getRefId() {
@@ -36,12 +36,12 @@ public class PaymentObjectReference implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PaymentObjectReference that = (PaymentObjectReference) o;
-        return Objects.equals(Dom, that.Dom) &&
+        return Objects.equals(dom, that.dom) &&
                 Objects.equals(refId, that.refId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Dom, refId);
+        return Objects.hash(dom, refId);
     }
 }
