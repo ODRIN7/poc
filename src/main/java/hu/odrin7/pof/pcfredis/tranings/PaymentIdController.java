@@ -2,8 +2,6 @@ package hu.odrin7.pof.pcfredis.tranings;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hu.odrin7.pof.pcfredis.tranings.PaymentTestData;
-import hu.odrin7.pof.pcfredis.tranings.PaymentIdService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
